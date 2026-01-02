@@ -70,16 +70,42 @@ class MockSocketService {
             (state, prevState) => {
                 if (state.chatMessages.length === prevState.chatMessages.length) return;
                 const lastMessage = state.chatMessages[state.chatMessages.length - 1];
-                if (
-                    lastMessage && lastMessage.sender === MessageSender.AGENT &&
-                    lastMessage.text.includes("crypto assets are volatile")
-                ) {
-                    this.logEvent('S1: Compliance script sent. Ending interaction.');
-                    this.schedule(() => {
-                        useAppStore.getState().actions.setSimulationState('ended');
-                        useAppStore.getState().actions.setAgentStatus('ACW');
-                    }, 2500);
-                    this.unsubscribe?.();
+                if (lastMessage && lastMessage.sender === MessageSender.AGENT) {
+                    // Check for Error 505 Solution
+                    if (lastMessage.text.includes("Error 505")) {
+                        this.logEvent('S1: Error 505 solution sent. Scheduling customer success reply.');
+                        this.schedule(() => {
+                            actions.addMessage({
+                                id: `msg-cust-${Date.now()}`,
+                                sender: MessageSender.USER,
+                                text: "Oh wow, that actually worked! I just enabled 'Set time automatically' and it activated immediately. Thanks!",
+                                timestamp: Date.now(),
+                            });
+                        }, 2000);
+
+                        this.schedule(() => {
+                            actions.setCurrentSentiment(Sentiment.POSITIVE);
+                            this.logEvent('S1: Sentiment improved to POSITIVE.');
+                        }, 2000);
+
+                        this.schedule(() => {
+                            useAppStore.getState().actions.setSimulationState('ended');
+                            useAppStore.getState().actions.setAgentStatus('ACW');
+                        }, 4000);
+
+                        // We continue listening in case there are other triggers, but for this simple scenario, we could unsubscribe. 
+                        // However, let's keep it robust.
+                    }
+
+                    // Check for Compliance Script (Existing logic, maybe modified)
+                    if (lastMessage.text.includes("crypto assets are volatile")) {
+                        this.logEvent('S1: Compliance script sent. Ending interaction.');
+                        this.schedule(() => {
+                            useAppStore.getState().actions.setSimulationState('ended');
+                            useAppStore.getState().actions.setAgentStatus('ACW');
+                        }, 2500);
+                        this.unsubscribe?.();
+                    }
                 }
             }
         );

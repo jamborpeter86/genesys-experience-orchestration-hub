@@ -1,0 +1,16 @@
+
+[
+  {
+    "id": "s2-msg-1",
+    "sender": "user",
+    "text": "Hi Nova, I saw a press release about the 2026 Renewal Benefits for VIPs. Can you give me the details?",
+    "timestamp": 1765875600000
+  },
+  {
+    "id": "s2-msg-2",
+    "sender": "bot",
+    "text": "Of course. According to document 'VIP Renewal Tiers - FINAL', VIP members will receive 3% cashback on all purchases, early access to new investment products, and a dedicated support line.",
+    "timestamp": 1765875602000,
+    "isKnowledgeGap": true
+  }
+]

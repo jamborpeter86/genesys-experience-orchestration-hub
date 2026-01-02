@@ -1,0 +1,10 @@
+
+{
+  "id": "cust-2026-vip",
+  "name": "Jordan",
+  "tier": "VIP",
+  "isVerified": true,
+  "phone": "+1-555-202-6000",
+  "email": "jordan.vip@example.com",
+  "avatarUrl": "https://i.pravatar.cc/150?u=jordanvip"
+}

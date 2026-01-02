@@ -1,0 +1,27 @@
+
+[
+  {
+    "agentId": "agent-009",
+    "agentName": "Sarah C.",
+    "avatarUrl": "https://i.pravatar.cc/150?u=sarah",
+    "points": 1250
+  },
+  {
+    "agentId": "agent-007",
+    "agentName": "James B.",
+    "avatarUrl": "https://i.pravatar.cc/150?u=james",
+    "points": 1100
+  },
+  {
+    "agentId": "alex",
+    "agentName": "Alex",
+    "avatarUrl": "https://i.pravatar.cc/150?u=alex",
+    "points": 950
+  },
+  {
+    "agentId": "agent-002",
+    "agentName": "Maria G.",
+    "avatarUrl": "https://i.pravatar.cc/150?u=maria",
+    "points": 800
+  }
+]
